@@ -2,7 +2,7 @@ from flask import Blueprint,make_response,jsonify,request
 from flask_restful import Resource,Api
 from app import app,api
 from app.master.controller  import check_user,insert_into_user_detail,get_all_product,get_product_byid,insert_new_product,update_product,delete_one
-
+from app.celery_config.celery_task import *
 blu = Blueprint("blu",__name__)
 
 class RegisterUser(Resource):
@@ -32,6 +32,9 @@ class Product(Resource):
 
             get_all =get_all_product()
             if get_all is not []:
+                name = "amitPandey"
+                b = jib.delay(name)
+                print(b)
                 return jsonify({"msg":get_all})
             else:
                 return jsonify({"msg":"error while fetching product"})

@@ -1,0 +1,3 @@
+there are two commands to run before we run flask
+1) for Celery Beat- ( celery -A app.celery beat)
+2) for Celery run - (celery -A app.celery worker --loglevel=info)
